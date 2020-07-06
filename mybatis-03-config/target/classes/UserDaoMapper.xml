@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的mapper接口-->
+<mapper namespace="com.jiang.dao.UserDao">
+    <!--
+        增删改不用写返回值类型resultType；增删改是返回影响多少行
+        mybatis自动判断，如果是boolean（影响0行自动封装false，否则true）
+
+
+
+    -->
+    <select id="getUserList" resultType="User">
+        select * from user
+    </select>
+    <select id="getUserById" resultType="com.jiang.pojo.User">
+        select * from user where id = #{id}
+    </select>
+    <update id="updateUser">
+        update user set name = #{name},pwd = #{pwd} where id = #{id}
+    </update>
+    <delete id="deleteUser">
+        delete from user where id = #{id}
+    </delete>
+    <insert id="addUser">
+        insert into user(name,pwd) value (#{name},#{pwd})
+    </insert>
+</mapper>
